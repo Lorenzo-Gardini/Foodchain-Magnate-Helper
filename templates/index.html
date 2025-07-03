@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi-user Real-time App</title>
+</head>
+<body>
+    <div id="login">
+        <h2>Inserisci username</h2>
+        <input type="text" id="username">
+        <button onclick="connect()">Entra</button>
+    </div>
+
+    <div id="main" style="display:none;">
+        <h2>Utenti connessi:</h2>
+        <ul id="userList"></ul>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
