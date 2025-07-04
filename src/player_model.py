@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 
-
 class PlayerStatus(BaseModel):
     has_cfo: bool = False
     has_burger_marketer: bool = False

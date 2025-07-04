@@ -5,6 +5,16 @@ function changeValue(id, delta) {
       input.value = value;
 }
 
+function clearTextboxUnitPrice() {
+  document.getElementById("unit_price_modifier").value = "";
+}
+
+function setZeroDefaultUnitPrice() {
+  const unitPriceModifier = document.getElementById("unit_price_modifier");
+  if(unitPriceModifier.value.trim() === '')
+    unitPriceModifier.value = '0';
+}
+
 function submitData() {
   const data = {
     has_cfo: document.getElementById('has_cfo').checked,
@@ -16,7 +26,8 @@ function submitData() {
     pizzas: parseInt(document.getElementById('pizzas').value) || 0,
     drinks: parseInt(document.getElementById('drinks').value) || 0,
     waitress: parseInt(document.getElementById('waitress').value) || 0,
-    salaries: parseInt(document.getElementById('salaries').value) || 0
+    salaries: parseInt(document.getElementById('salaries').value) || 0,
+    unit_price_modifier: parseInt(document.getElementById('unit_price_modifier').value) || 0
   };
 
   const params = new URLSearchParams(data).toString();

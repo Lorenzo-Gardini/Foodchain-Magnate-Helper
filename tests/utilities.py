@@ -14,6 +14,6 @@ def generate_parameters_list()-> List[Dict[str, int | bool]]:
         'burgers': [0, 5],
         'drinks': [0, 5],
         'waitress': [0, 3, 5],
-        'unit_price_modifier': [0, -1],
+        'unit_price_modifier': [0, -1, +10],
         'salaries': [0, 3, 5],
     }))

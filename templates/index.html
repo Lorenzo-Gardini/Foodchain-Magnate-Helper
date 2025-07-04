@@ -49,6 +49,11 @@
     <button onclick="changeValue('salaries', 1)">+</button>
   </div>
 
+  <div class="counter">
+    <label for="unit_price_modifier">Unit Price:</label>
+    <input type="number" id="unit_price_modifier" value="0" onclick="clearTextboxUnitPrice()" onblur="setZeroDefaultUnitPrice()">
+  </div>
+
   <!-- Toggles -->
   <h2>Achievements</h2>
 
@@ -76,7 +81,6 @@
 
   <!-- Submit Button -->
   <button id="submit-btn" onclick="submitData()">Send</button>
-
 
 </body>
 </html>
