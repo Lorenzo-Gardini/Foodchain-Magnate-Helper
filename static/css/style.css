@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f9f9f9;
+  max-width: 600px;
+  margin: auto;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.counter, .toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.counter label,
+.toggle label {
+  flex: 1;
+  font-size: 1.5em;
+}
+
+.counter button {
+  width: 40px;
+  height: 40px;
+  font-size: 1.2em;
+}
+
+.counter input[type="number"] {
+  height: 35px;
+  margin: 5px;
+  width: 40px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+input[type="checkbox"] {
+  transform: scale(2);
+}
+
+button#submit-btn {
+  display: block;
+  margin: 30px auto 0 auto;
+  padding: 12px 24px;
+  font-size: 1.2em;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button#submit-btn:hover {
+  background-color: #45a049;
+}
+
+.alert-text {
+  font-size: 40px;
+  font-weight: bold;
+}

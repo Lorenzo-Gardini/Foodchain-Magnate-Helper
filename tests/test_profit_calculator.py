@@ -18,6 +18,17 @@ SALARY_COST = int(os.getenv("SALARY_COST", 5))
 class IntegrationTests(unittest.TestCase):
     _grid: List[Dict[str, int | bool]] = generate_parameters_list()
 
+    def test_base_profit(self):
+        n_burgers: int = 3
+        n_pizzas: int = 1
+        player_status: PlayerStatus = PlayerStatus(burgers=n_burgers,
+                                                   pizzas=n_pizzas,
+                                                   has_burger_marketer=True,
+                                                   has_pizza_marketer=False)
+        # 30 burger + 15 marketer + 10 pizza
+        expected_profit: int = n_burgers * (UNIT_PRICE + MARKETER_INCREASE) + n_pizzas * UNIT_PRICE
+        self.assertEqual(expected_profit, compute_profit(player_status))
+
     def test_profit(self):
         for params in list(self._grid):
             player_status: PlayerStatus = PlayerStatus(**params)
@@ -27,10 +38,10 @@ class IntegrationTests(unittest.TestCase):
     @staticmethod
     def _profit_calculator(player_status: PlayerStatus) -> float:
         new_unit_price: int = UNIT_PRICE + player_status.unit_price_modifier
-        burgers: int = player_status.burgers * (new_unit_price + MARKETER_INCREASE if player_status.has_burger_marketer else 0)
-        pizzas: int = player_status.pizzas * (new_unit_price + MARKETER_INCREASE if player_status.has_pizza_marketer else 0)
-        drinks: int = player_status.drinks * (new_unit_price + MARKETER_INCREASE if player_status.has_drink_marketer else 0)
-        waitresses: int = player_status.waitress * (WAITRESS + WAITRESS_INCREASE if player_status.has_firs_waitress_marketer else 0)
+        burgers: int = player_status.burgers * (new_unit_price + (MARKETER_INCREASE if player_status.has_burger_marketer else 0))
+        pizzas: int = player_status.pizzas * (new_unit_price + (MARKETER_INCREASE if player_status.has_pizza_marketer else 0))
+        drinks: int = player_status.drinks * (new_unit_price + (MARKETER_INCREASE if player_status.has_drink_marketer else 0))
+        waitresses: int = player_status.waitress * (WAITRESS + (WAITRESS_INCREASE if player_status.has_firs_waitress_marketer else 0))
         income = burgers + pizzas + drinks + waitresses
         if player_status.has_cfo:
             income += income // 2

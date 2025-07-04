@@ -1,20 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <title>Multi-user Real-time App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Foodchain Manager</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/static/js/script.js"></script>
+
 </head>
 <body>
-    <div id="login">
-        <h2>Inserisci username</h2>
-        <input type="text" id="username">
-        <button onclick="connect()">Entra</button>
-    </div>
 
-    <div id="main" style="display:none;">
-        <h2>Utenti connessi:</h2>
-        <ul id="userList"></ul>
-    </div>
+  <h1>Food Chain Magnate</h1>
 
-    <script src="/static/script.js"></script>
+  <!-- Counters -->
+  <div class="counter">
+    <label for="burgers">Burgers:</label>
+    <button onclick="changeValue('burgers', -1)">-</button>
+    <input type="number" id="burgers" value="0" readonly>
+    <button onclick="changeValue('burgers', 1)">+</button>
+  </div>
+
+  <div class="counter">
+    <label for="pizzas">Pizzas:</label>
+    <button onclick="changeValue('pizzas', -1)">-</button>
+    <input type="number" id="pizzas" value="0" readonly>
+    <button onclick="changeValue('pizzas', 1)">+</button>
+  </div>
+
+  <div class="counter">
+    <label for="drinks">Drinks:</label>
+    <button onclick="changeValue('drinks', -1)">-</button>
+    <input type="number" id="drinks" value="0" readonly>
+    <button onclick="changeValue('drinks', 1)">+</button>
+  </div>
+
+  <div class="counter">
+    <label for="waitress">Waitress:</label>
+    <button onclick="changeValue('waitress', -1)">-</button>
+    <input type="number" id="waitress" value="0" readonly>
+    <button onclick="changeValue('waitress', 1)">+</button>
+  </div>
+
+  <div class="counter">
+    <label for="salaries">Salaries:</label>
+    <button onclick="changeValue('salaries', -1)">-</button>
+    <input type="number" id="salaries" value="0" readonly>
+    <button onclick="changeValue('salaries', 1)">+</button>
+  </div>
+
+  <!-- Toggles -->
+  <h2>Achievements</h2>
+
+  <div class="toggle">
+    <label for="has_burger_marketer">Burger Marketer:</label>
+    <input type="checkbox" id="has_burger_marketer">
+  </div>
+  <div class="toggle">
+    <label for="has_pizza_marketer">Pizza Marketer:</label>
+    <input type="checkbox" id="has_pizza_marketer">
+  </div>
+  <div class="toggle">
+    <label for="has_drink_marketer">Drink Marketer:</label>
+    <input type="checkbox" id="has_drink_marketer">
+  </div>
+  <div class="toggle">
+    <label for="has_firs_waitress_marketer">1st Waitress Marketer:</label>
+    <input type="checkbox" id="has_firs_waitress_marketer">
+  </div>
+
+  <div class="toggle">
+    <label for="has_cfo">CFO:</label>
+    <input type="checkbox" id="has_cfo">
+  </div>
+
+  <!-- Submit Button -->
+  <button id="submit-btn" onclick="submitData()">Send</button>
+
+
 </body>
 </html>
