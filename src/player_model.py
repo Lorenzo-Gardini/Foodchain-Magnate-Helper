@@ -1,15 +1,17 @@
-
-
 from dataclasses import dataclass
-from typing import TypeAlias
 
-PlayerId: TypeAlias = int
+from pydantic import BaseModel
 
-@dataclass
-class Player:
+
+class PlayerStatus(BaseModel):
     has_cfo: bool = False
-    burger_marketer: bool = False
-    pizza_marketer: bool = False
-    drink_marketer: bool = False
-    firs_waitress_marketer: bool = False
-    total_profit: int = 0
+    has_burger_marketer: bool = False
+    has_pizza_marketer: bool = False
+    has_drink_marketer: bool = False
+    has_firs_waitress_marketer: bool = False
+    pizzas: int = 0,
+    burgers: int = 0,
+    drinks: int = 0,
+    waitress: int = 0,
+    unit_price_modifier: int = 0
+    salaries: int = 0
