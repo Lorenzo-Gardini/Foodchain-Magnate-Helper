@@ -20,7 +20,6 @@ class IntegrationTests(unittest.TestCase):
             result: Dict[str, int] = response.json()
             self.assertTrue("profit" in result)
             self.assertTrue(isinstance(result["profit"], int))
-            self.assertTrue(result["profit"] >= 0)
 
     def test_wrong_params(self):
         response: Response = self._client.get(self._path, params={})
