@@ -21,6 +21,7 @@ class IntegrationTests(unittest.TestCase):
             self.assertTrue("profit" in result)
             self.assertTrue(isinstance(result["profit"], int))
 
-    def test_wrong_params(self):
+    def test_empty_params_is_zero(self):
         response: Response = self._client.get(self._path, params={})
-        self.assertEqual(422, response.status_code)
+        self.assertEqual(200, response.status_code)
+        self.assertEqual(0, response.json()["profit"])
