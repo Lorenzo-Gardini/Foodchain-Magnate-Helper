@@ -11,7 +11,7 @@ app = FastAPI(
     description="System for Food Chain Magnate, helping the player for profit calculation",
 )
 templates = Jinja2Templates(directory="templates")
-# app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 @app.get("/", response_class=HTMLResponse)
