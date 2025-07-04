@@ -1,14 +1,12 @@
 import os
 import unittest
-from itertools import combinations
-from typing import Dict, List, Set, Collection, Any
+from typing import Dict, List
 
 from dotenv import load_dotenv, find_dotenv
-from fastapi.testclient import TestClient
-from main import app
-from src.profit_calculator import compute_profit
+
 from src.player_model import PlayerStatus
-from sklearn.model_selection import ParameterGrid
+from src.profit_calculator import compute_profit
+from tests.utilities import generate_parameters_list
 
 load_dotenv(find_dotenv())
 UNIT_PRICE = int(os.getenv("UNIT_PRICE", 10))
@@ -18,22 +16,9 @@ WAITRESS_INCREASE = int(os.getenv("WAITRESS_INCREASE", 2))
 SALARY_COST = int(os.getenv("SALARY_COST", 5))
 
 class IntegrationTests(unittest.TestCase):
-    _client: TestClient = TestClient(app)
-    _grid: ParameterGrid = ParameterGrid(param_grid={
-        'has_cfo': [True, False],
-        'has_burger_marketer': [True, False],
-        'has_pizza_marketer': [True, False],
-        'has_drink_marketer': [True, False],
-        'has_firs_waitress_marketer': [True, False],
-        'pizzas': [0, 5],
-        'burgers': [0, 5],
-        'drinks': [0, 5],
-        'waitress': [0, 3, 5],
-        'unit_price_modifier': [0, -1],
-        'salaries': [0, 3, 5],
-    })
+    _grid: List[Dict[str, int | bool]] = generate_parameters_list()
 
-    def test_burgers(self):
+    def test_profit(self):
         for params in list(self._grid):
             player_status: PlayerStatus = PlayerStatus(**params)
             self.assertEqual(self._profit_calculator(player_status), compute_profit(player_status))

@@ -1,6 +1,6 @@
 from typing import Dict
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request, Query
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -13,7 +13,7 @@ app = FastAPI(
     description="System for Food Chain Magnate, helping the player for profit calculation",
 )
 templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -22,5 +22,5 @@ async def index(request: Request):
 
 
 @app.get("/profit_calculator")
-async def profit_calculator(player_status: PlayerStatus):
+async def profit_calculator(player_status: PlayerStatus = Query(...)):
     return {"profit": compute_profit(player_status)}
